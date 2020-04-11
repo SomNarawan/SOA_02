@@ -3,8 +3,12 @@ package com.project.wedding.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.wedding.entity.User;
@@ -27,9 +31,19 @@ public class UserController {
 		return user;
 	}
 	
-	public void test() {
-		
+	@PostMapping("/users")
+	public User createUser(@RequestBody User newUser) {
+	    return userR.save(newUser);
 	}
-
+	
+	@PutMapping("/users")
+	public User updateUser(@RequestBody User newUser) {
+	    return userR.save(newUser);
+	} 
+	
+	 @DeleteMapping("/user/{id}")
+	 public void deleteUser(@PathVariable Integer id) {
+	   userR.delete(id);
+	 }
 	
 }
